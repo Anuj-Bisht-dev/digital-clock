@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* background-color: rgb(60, 61, 61); */
+            background-color: black;
+            /* background: linear-gradient(100deg, #4c79cc, rgb(207, 72, 142)); */
+        }
+
+        #clock {
+            border-radius: 5px;
+            font-family: 'Gill Sans', 'Gill Sans MT';
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            padding: 20px;
+            width: 300px;
+            height: 60px;
+            gap: 18px;
+        }
+        #glow::after{
+            content: " ";
+            border-radius: 5px;
+            width: 306px;
+            height: 66px;
+            position: absolute;
+            z-index: -1;
+            top: 45.5%;
+            right: 40%;
+            box-shadow: 0 0 60px purple;
+            background: linear-gradient(20deg, red, blue, purple, rgb(255, 89, 0));
+            animation: glowing-border 2s infinite ease-in-out;
+        }
+        @keyframes glowing-border {
+            0%{
+                filter: hue-rotate(0deg);
+                }
+            100%{
+                filter: hue-rotate(360deg);
+                }
+        }
+
+        #clock>div {
+            color: white;
+            width: 100px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="container">
+        <span id="glow">   
+            <div id="clock">
+                <div class="one">
+                    <h1></h1>
+                </div>
+                <div class="two">
+                    <h1></h1>
+                </div>
+                <div class="three">
+                    <h1></h1>
+                </div>
+                <div class="four">
+                    <h1></h1>
+                </div>
+                <div class="month">
+                    <h1></h1>
+                </div>
+                <div class="year">
+                    <h1></h1>
+                </div>
+            </div>
+        </span>
+    </span>
+
+    <script defer>
+        setInterval(myfun, 1000);
+        function myfun() {
+            let time_id = document.getElementsByTagName("div");
+
+            let time_date = new Date().toLocaleString().split(" ")[1].split(":");
+
+            let time_day = new Date().toString().split(" ")[0].substring(0, 2).toUpperCase();
+
+            let month = Date().split(" ")[1].toUpperCase();
+            let year = Date().split(" ")[3];
+
+            time_id[1].innerHTML = time_day;
+            time_id[2].innerHTML = time_date[0];
+            time_id[3].innerHTML = time_date[1];
+            time_id[4].innerHTML = time_date[2];
+            time_id[5].innerHTML = month;
+            time_id[6].innerHTML = year;
+
+
+            time_id[0].style.color = "white";
+        }
+        // another way 
+        // setInterval(myfun, 1000);
+
+        //     function myfun() {
+        //     let time_new = new Date().toLocaleTimeString();
+        //     let time_id = document.getElementById("time")
+        //     time_id.innerHTML = time_new;
+        // }
+    </script>
+</body>
+
+</html>
